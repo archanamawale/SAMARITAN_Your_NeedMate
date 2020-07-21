@@ -50,44 +50,6 @@
         android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
         android:padding="10dp"></TextView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edt_dob"
-        android:text="GENDER:"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/txtgender"></TextView>
-    <RadioGroup
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtgender"
-        android:layout_centerInParent="true"
-        android:id="@+id/rg"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rbmale"
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:text="Male"
-            android:textSize="18dp"></RadioButton>
-
-        <RadioButton
-            android:id="@+id/rbfemale"
-            android:layout_width="119dp"
-            android:layout_height="wrap_content"
-            android:text="Female"
-            android:textSize="18dp"></RadioButton>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Other"
-            android:textSize="18dp"
-            android:id="@+id/rbother"></RadioButton>
-    </RadioGroup>
 
     <EditText
         android:layout_width="300dp"
@@ -95,7 +57,7 @@
         android:hint="Email"
         android:id="@+id/edt_semail"
         android:background="@drawable/rounded_bg"
-        android:layout_below="@+id/rg"
+        android:layout_below="@+id/edt_dob"
         android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
         android:padding="10dp"
@@ -176,4 +138,14 @@
         android:layout_marginTop="30dp"
         android:textColor="#000"
         android:layout_marginLeft="30dp"></TextView>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:visibility="invisible"></ProgressBar>
 </RelativeLayout>

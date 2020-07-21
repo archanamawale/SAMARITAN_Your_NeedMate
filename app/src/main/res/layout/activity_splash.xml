@@ -24,7 +24,7 @@
         android:text="Samaritan"
         android:id="@+id/txt1"
         android:textSize="40dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"></TextView>
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
         android:layout_centerInParent="true"
         android:fontFamily="@font/courgette"
         android:text="Your Needmate"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20dp"
         android:textStyle="bold"></TextView>
 
@@ -41,11 +41,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
-        android:fontFamily="@font/courgette"
         android:text="© Archana Mawale"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:gravity="center"
         android:textStyle="bold"
+        android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
         android:layout_weight="4"
         android:layout_gravity="bottom"></TextView>

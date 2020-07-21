@@ -1,18 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".MainActivity"
+    android:background="@drawable/bg">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/txtwlcm"
+        android:text="Welcome to Samaritan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/courgette"
+        android:textSize="30dp"></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtstep"
+        android:text="Just Few more Steps to Go!!!"
+        android:layout_below="@+id/txtwlcm"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:layout_centerHorizontal="true"></TextView>
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/txtstep"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_button">
+        <TextView
+            android:id="@+id/txtaddno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add the numbers "
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/courgette"
+            android:layout_marginTop="10dp"></TextView>
+        <TextView
+            android:id="@+id/txtaddplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="whom you want to contact in need "
+            android:layout_below="@+id/txtaddno"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/courgette"
+            android:layout_marginTop="10dp"></TextView>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtfirstno"
+            android:layout_below="@+id/txtaddplus"
+            android:layout_centerHorizontal="true"
+            android:hint="First Number"
+            android:textColor="#ffffff"
+            android:layout_marginTop="5dp"></EditText>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtsecondno"
+            android:layout_below="@+id/edtfirstno"
+            android:layout_centerHorizontal="true"
+            android:hint="First Number"
+            android:textColor="#ffffff"
+            android:layout_marginTop="5dp"></EditText>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtthirdno"
+            android:layout_below="@+id/edtsecondno"
+            android:layout_centerHorizontal="true"
+            android:hint="First Number"
+            android:textColor="#ffffff"
+            android:layout_marginTop="5dp"></EditText>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="19dp"
+        android:background="@drawable/rounded_button"
+        android:text="Logout"></Button>
+
+
+</RelativeLayout>

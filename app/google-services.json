@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "506592373242",
+    "firebase_url": "https://samaritan-your-needmate.firebaseio.com",
+    "project_id": "samaritan-your-needmate",
+    "storage_bucket": "samaritan-your-needmate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506592373242:android:7a79a282c55fd0a5d7dc43",
+        "android_client_info": {
+          "package_name": "com.example.samaritan_yourneedmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506592373242-mqt0u3tciho2aev61djott8c1r26npv1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgRfjAVfDwcoKZUOqqMKVCFC3gVzFgkS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506592373242-mqt0u3tciho2aev61djott8c1r26npv1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
