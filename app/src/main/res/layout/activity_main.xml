@@ -56,16 +56,20 @@
             android:id="@+id/edtfirstno"
             android:layout_below="@+id/txtaddplus"
             android:layout_centerHorizontal="true"
+            android:inputType="number"
+            android:maxLength="10"
             android:hint="First Number"
             android:textColor="#ffffff"
-            android:layout_marginTop="5dp"></EditText>
+            android:layout_marginTop="30dp"></EditText>
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/edtsecondno"
+            android:inputType="number"
+            android:maxLength="10"
             android:layout_below="@+id/edtfirstno"
             android:layout_centerHorizontal="true"
-            android:hint="First Number"
+            android:hint="Second Number"
             android:textColor="#ffffff"
             android:layout_marginTop="5dp"></EditText>
         <EditText
@@ -74,9 +78,20 @@
             android:id="@+id/edtthirdno"
             android:layout_below="@+id/edtsecondno"
             android:layout_centerHorizontal="true"
-            android:hint="First Number"
+            android:inputType="number"
+            android:maxLength="10"
+            android:hint="Third Number"
             android:textColor="#ffffff"
             android:layout_marginTop="5dp"></EditText>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnaddno"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="ADD NUMBERS"
+            android:textColor="#ffffff"></Button>
 
     </RelativeLayout>
 

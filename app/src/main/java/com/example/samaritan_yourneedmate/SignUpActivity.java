@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -34,6 +35,8 @@ FirebaseAuth fAuth;
 ProgressBar progressBar;
 DatabaseReference databaseReference;
 FirebaseDatabase database;
+    private String TAG="Email Verification";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +52,7 @@ FirebaseDatabase database;
 
         // Write a message to the database
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("message");
-
+        databaseReference = database.getReference();
 
 
         slogin=findViewById(R.id.btn_slogin);
@@ -105,7 +107,18 @@ FirebaseDatabase database;
                     }
                 });
 
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                FirebaseUser user = auth.getCurrentUser();
 
+                user.sendEmailVerification()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Email sent.");
+                                }
+                            }
+                        });
 
 
 
@@ -137,6 +150,9 @@ FirebaseDatabase database;
         String dob=edtdob.getText().toString();
 
         UserInformation userInformation=new UserInformation(name,phno,dob);
+        userInformation.setDob(dob);
+        userInformation.setPhno(phno);
+        userInformation.setName(name);
         //FirebaseUser user=fAuth.getCurrentUser();
         //databaseReference.child(user.getUid()).setValue(userInformation);
         FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("message").setValue(userInformation);
