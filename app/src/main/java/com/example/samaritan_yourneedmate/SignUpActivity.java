@@ -107,21 +107,6 @@ FirebaseDatabase database;
                     }
                 });
 
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                FirebaseUser user = auth.getCurrentUser();
-
-                user.sendEmailVerification()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "Email sent.");
-                                }
-                            }
-                        });
-
-
-
 
             }
         });
@@ -148,17 +133,20 @@ FirebaseDatabase database;
         String name=edtname.getText().toString();
         String phno=edtphno.getText().toString();
         String dob=edtdob.getText().toString();
+        String email=edtemail.getText().toString();
+        String password=edtpass.getText().toString();
 
-        UserInformation userInformation=new UserInformation(name,phno,dob);
+        UserInformation userInformation=new UserInformation();
         userInformation.setDob(dob);
         userInformation.setPhno(phno);
         userInformation.setName(name);
+        userInformation.setEmail(email);
+        userInformation.setPassword(password);
         //FirebaseUser user=fAuth.getCurrentUser();
         //databaseReference.child(user.getUid()).setValue(userInformation);
-        FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("message").setValue(userInformation);
+        FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().
+                getUid()).setValue(userInformation);
         Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-
-
     }
 
 }

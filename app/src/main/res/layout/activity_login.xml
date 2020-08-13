@@ -16,25 +16,19 @@
     android:layout_marginLeft="20dp"
     android:visibility="invisible"></ProgressBar>
 
-<ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/logonew"
-        android:layout_above="@+id/txt_samaritan"
-        android:layout_centerInParent="true"></ImageView>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/courgette"
         android:text="Samaritan"
-        android:textSize="35dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         android:textColor="#000"
         android:layout_above="@id/edtmail"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:id="@+id/txt_samaritan"
         android:layout_centerInParent="true"></TextView>
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -48,6 +42,7 @@
         android:paddingHorizontal="30dp"
         android:drawableLeft="@drawable/email_drawable"
         android:drawablePadding="20dp"></EditText>
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -61,8 +56,8 @@
         android:paddingHorizontal="30dp"
         android:drawableLeft="@drawable/password_drawable"
         android:drawablePadding="20dp"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_marginTop="10dp">
+
     </EditText>
     <Button
         android:layout_width="150dp"
@@ -75,6 +70,7 @@
         android:layout_below="@+id/edtpass"
         android:layout_marginTop="30dp"
         android:layout_centerInParent="true"></Button>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,20 +80,24 @@
         android:id="@+id/txt_fgtpass"
         android:clickable="true"
         android:layout_below="@id/edtpass"
+        android:textColor="#000"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"></TextView>
+        android:layout_marginRight="60dp"></TextView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:id="@+id/relLayout1"
         android:layout_below="@id/btnlogin">
+
         <View
             android:layout_width="120dp"
             android:layout_height="2dp"
             android:background="#000"
             android:layout_marginLeft="30dp"
             android:id="@+id/view1"></View>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,6 +107,7 @@
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:id="@+id/txtor"></TextView>
+
         <View
             android:layout_width="120dp"
             android:layout_height="2dp"
@@ -141,6 +142,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="50dp"
         android:layout_marginBottom="15dp"></TextView>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

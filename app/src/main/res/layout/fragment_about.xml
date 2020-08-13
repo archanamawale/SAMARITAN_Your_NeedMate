@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutFragment"
+    android:orientation="vertical"
+    android:background="@drawable/bg1">
+
+   <ImageView
+       android:id="@+id/imglogo"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+      android:src="@drawable/logonew"
+      android:layout_centerHorizontal="true"></ImageView>
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/txtabt1"
+      android:text="ABOUT SAMARITAN APP:"
+      android:textSize="20dp"
+       android:textColor="#000"
+       android:fontFamily="@font/aclonica"
+       android:layout_below="@id/imglogo"
+      android:layout_marginLeft="20dp"/>
+   <TextView
+       android:id="@+id/txtabt2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/txtabt1"
+       android:textSize="16dp"
+       android:layout_marginTop="10dp"
+       android:textColor="#000"
+       android:layout_marginLeft="20dp"
+      android:text="Samaritan- Your Needmate app, designed and developed to help
+Samaritan users in need. This app features sms alert and whatsapp through which one can send
+update of their current location to their near ones. One can opt for making an
+emergency call too. You can get your current location too, in addition could locate near by
+Police Station and Hospitals. \nThe moto of this app is just to provide an helping hand to the users.
+Any misuse of this app to prank someone could not be tolerated and would lead to a legal action.
+If such situation comes into the picture, the developer won't take it's charge.
+\nSTAY SAFE AND STAY ALERT!!!" />
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:id="@+id/txtabt3"
+      android:text="ABOUT DEVELOPER:"
+      android:textSize="20dp"
+      android:textColor="#000"
+       android:fontFamily="@font/aclonica"
+      android:layout_below="@id/txtabt2"
+      android:layout_marginLeft="20dp"
+      android:layout_marginTop="10dp"></TextView>
+   <ImageView
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+      android:src="@drawable/mypic"
+      android:layout_below="@id/txtabt2"
+      android:layout_alignParentRight="true"
+      android:layout_marginRight="10dp"></ImageView>
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:id="@+id/txtabt4"
+      android:layout_below="@id/txtabt3"
+      android:layout_marginLeft="20dp"
+       android:textColor="#000"
+      android:text="This app is designed and developed\n Miss. ARCHANA MAWALE, student of\n
+Shri Sant Gajanan Maharaj College of\n Engineering Shegaon (MS), as a demo project\n
+to be submitted as a part of training in Android\n Application Development
+by IBM in the month of July 2020-  August 2020."/>
+
+
+
+</RelativeLayout>

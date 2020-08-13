@@ -24,20 +24,20 @@ SharedPreferences sharedPreferences;
         btnaddnos=findViewById(R.id.btnaddnos);
         sharedPreferences=getSharedPreferences("Your Numbers",MODE_PRIVATE);
         if (sharedPreferences.contains("Value1")){
-            txtvalue1.setText(sharedPreferences.getInt("Value1",123)+"");
+            txtvalue1.setText(sharedPreferences.getInt("Value1",0)+"");
         }
         if (sharedPreferences.contains("Value2")){
-            txtvalue2.setText(sharedPreferences.getInt("Value2",123)+"");
+            txtvalue2.setText(sharedPreferences.getInt("Value2",0)+"");
         }
         if (sharedPreferences.contains("Value3")){
-            txtvalue3.setText(sharedPreferences.getInt("Value3",123)+"");
+            txtvalue3.setText(sharedPreferences.getInt("Value3",0)+"");
         }
         txtrefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtvalue1.setText(sharedPreferences.getInt("Value1",123)+"");
-                txtvalue2.setText(sharedPreferences.getInt("Value2",123)+"");
-                txtvalue3.setText(sharedPreferences.getInt("Value3",123)+"");
+                txtvalue1.setText(sharedPreferences.getInt("Value1",0)+"");
+                txtvalue2.setText(sharedPreferences.getInt("Value2",0)+"");
+                txtvalue3.setText(sharedPreferences.getInt("Value3",0)+"");
             }
         });
         btnaddnos.setOnClickListener(new View.OnClickListener() {

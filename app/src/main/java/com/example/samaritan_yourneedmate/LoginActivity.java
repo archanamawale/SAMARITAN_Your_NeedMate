@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 pblogin.setVisibility(View.VISIBLE);
                 if (fAuth.getCurrentUser()!=null){
-                    Intent in= new Intent(LoginActivity.this, MainActivity2.class);
+                    Intent in= new Intent(LoginActivity.this, DashboardActivity.class);
                     startActivity(in);
                     finish();
                 }
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this,MainActivity2.class));
+                            startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
                         }else{
                             Toast.makeText(LoginActivity.this, "Error:"+task.getException(), Toast.LENGTH_SHORT).show();
                             pblogin.setVisibility(View.GONE);
@@ -164,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("abc", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(LoginActivity.this,MainActivity2.class));
+                            startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("abc", "signInWithCredential:failure", task.getException());

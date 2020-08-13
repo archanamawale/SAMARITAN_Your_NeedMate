@@ -13,6 +13,7 @@
         android:text="Welcome to Samaritan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:textStyle="bold"
         android:fontFamily="@font/courgette"
         android:textSize="30dp"></TextView>
     <TextView
@@ -94,17 +95,6 @@
             android:textColor="#ffffff"></Button>
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="19dp"
-        android:background="@drawable/rounded_button"
-        android:text="Logout"></Button>
 
 
 </RelativeLayout>

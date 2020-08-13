@@ -49,11 +49,14 @@ public class IntroScreen extends AppCompatActivity {
         tabIndicator=findViewById(R.id.tab_indicator);
 
         final List<ScreenItem> mList=new ArrayList<>();
-        mList.add(new ScreenItem("Your NeedMate","APP to Help you in Need",R.drawable.help_person));
-        mList.add(new ScreenItem("Shake 'N' Activate","Shake your phone thrice to activate the app",
-                R.drawable.shake_phone));
-        mList.add(new ScreenItem("Voice Recognization","Activate app with your voice and " +
-                "store audio files as you Diary",R.drawable.voice_control));
+        mList.add(new ScreenItem("Your NeedMate","Designed and Developed to help SAMARITAN Users in need with the exciting features.\n Click on next" +
+                " to check it out!",R.drawable.help_person));
+
+        mList.add(new ScreenItem("Send Alert and update","This app features sms alert through which one can" +
+                "send their location update via SMS or by Whatsapp.",R.drawable.alert));
+
+        mList.add(new ScreenItem("Get Access to Location","Get your Current location along with near by " +
+                "Police Stations and Hospitals. \n\n WELCOME SAMARITAN USER!!! ", R.drawable.location));
 
         screenpager = findViewById(R.id.screen_viewpager);
         introViewPagerAdapter=new IntroViewPagerAdapter(this,mList);

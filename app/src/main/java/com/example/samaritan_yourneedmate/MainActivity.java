@@ -26,7 +26,6 @@ SharedPreferences sharedPreferences;
         edtfirst=findViewById(R.id.edtfirstno);
         edtsecond=findViewById(R.id.edtsecondno);
         edtthird=findViewById(R.id.edtthirdno);
-        btnlogout=findViewById(R.id.btn_logout);
         btnaddno=findViewById(R.id.btnaddno);
        sharedPreferences=getSharedPreferences("Your Numbers",MODE_PRIVATE);
        btnaddno.setOnClickListener(new View.OnClickListener() {
@@ -40,14 +39,6 @@ SharedPreferences sharedPreferences;
        });
 
 
-        btnlogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
-                finish();
-            }
-        });
+
     }
 }
