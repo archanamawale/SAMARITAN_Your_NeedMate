@@ -67,28 +67,17 @@ private String email,password;
         txtview4=v.findViewById(R.id.textView_dob);
         imgview=v.findViewById(R.id.imageView_profilepic);
 
-        database= FirebaseDatabase.getInstance();
-        DatabaseReference rootref= FirebaseDatabase.getInstance().getReference("User");
-        DatabaseReference userRef=rootref.child(USER).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Intent intent=getActivity().getIntent();
+        String user_name=intent.getStringExtra("name");
+        String user_email=intent.getStringExtra("email");
+        String user_phno=intent.getStringExtra("phno");
+        String user_dob=intent.getStringExtra("dob");
 
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds:snapshot.getChildren()){
-                    if(ds.child("email").getValue().equals(email)){
-                        txtview1.setText(ds.child("name").getValue(String.class));
-                        txtview2.setText(ds.child("email").getValue(String.class));
-                        txtview3.setText(ds.child("phno").getValue(String.class));
-                        txtview4.setText(ds.child("dob").getValue(String.class));
-                    }
-                }
-            }
+        txtview1.setText(user_name);
+        txtview2.setText(user_email);
+        txtview3.setText(user_phno);
+        txtview4.setText(user_dob);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         return v;
     }

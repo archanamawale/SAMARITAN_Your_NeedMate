@@ -33,6 +33,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
@@ -60,8 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email=edtmail.getText().toString();
-                String pass=edtpass.getText().toString();
+                final String email=edtmail.getText().toString();
+                final String pass=edtpass.getText().toString();
                 if (TextUtils.isEmpty(email)){
                     edtmail.setError("Email is Required");
                     return;
@@ -76,18 +81,47 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 pblogin.setVisibility(View.VISIBLE);
                 if (fAuth.getCurrentUser()!=null){
-                    Intent in= new Intent(LoginActivity.this, DashboardActivity.class);
-                    startActivity(in);
+                    intent= new Intent(LoginActivity.this, DashboardActivity.class);
+                    startActivity(intent);
                     finish();
                 }
                 pblogin.setVisibility(View.VISIBLE);
-                // authenticate the user
                 fAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
+
+                            DatabaseReference reference= FirebaseDatabase.getInstance().getReference("User");
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    // authenticate the user
+                                    if(snapshot.exists()){
+                                        String passwordFromDb=snapshot.child(email).child("password").getValue(String.class);
+                                            String nameFromDb=snapshot.child(email).child("name").getValue(String.class);
+                                            String emailFromDb=snapshot.child(email).child("email").getValue(String.class);
+                                            String phnoFromDb=snapshot.child(email).child("phno").getValue(String.class);
+                                            String dobFromDb=snapshot.child(email).child("dob").getValue(String.class);
+
+
+                                            intent.putExtra("name",nameFromDb);
+                                            intent.putExtra("email",emailFromDb);
+                                            intent.putExtra("phno",phnoFromDb);
+                                            intent.putExtra("dob",dobFromDb);
+                                    }
+                                  else{
+                                        Toast.makeText(LoginActivity.this, "Snapshot does not exists...", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }else{
                             Toast.makeText(LoginActivity.this, "Error:"+task.getException(), Toast.LENGTH_SHORT).show();
                             pblogin.setVisibility(View.GONE);
