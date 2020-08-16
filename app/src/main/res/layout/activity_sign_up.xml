@@ -11,21 +11,33 @@
         android:id="@+id/txtsignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/courgette"
         android:gravity="center_horizontal"
-        android:text="SignUp to Samaritan"
+        android:text="SignUp"
         android:textColor="#000"
         android:textStyle="bold"
         android:textSize="36dp"></TextView>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_baseline_person_24"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txtsignup"
+        app:civ_border_width="5dp"
+        android:layout_marginTop="20dp"
+        app:civ_border_color="@color/colorAccent"
+        android:id="@+id/circleviewperson">
+    </de.hdodenhof.circleimageview.CircleImageView>
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Full Name"
         android:id="@+id/edt_fullname"
         android:background="@drawable/rounded_bg"
-        android:layout_below="@+id/txtsignup"
-        android:layout_marginTop="50dp"
+        android:layout_below="@+id/circleviewperson"
+        android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
         android:padding="10dp"
         android:inputType="textPersonName"></EditText>
@@ -122,23 +134,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGIN"
+        android:layout_centerHorizontal="true"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:textSize="20dp"
-        android:layout_below="@+id/relLayout1"
-        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txtalreadyhaveacc"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:id="@+id/btn_slogin"></Button>
     <TextView
+        android:id="@+id/txtalreadyhaveacc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Already have an Account...."
         android:textSize="20dp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/relLayout1"
         android:layout_marginTop="30dp"
-        android:textColor="#000"
-        android:layout_marginLeft="30dp"></TextView>
+        android:textColor="#000"></TextView>
 
     <ProgressBar
         android:layout_width="wrap_content"

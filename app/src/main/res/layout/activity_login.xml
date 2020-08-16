@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:background="@drawable/bg">
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/help_person"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"></ImageView>
 <ProgressBar
     android:id="@+id/pb_login"
     android:layout_width="wrap_content"
@@ -25,7 +31,7 @@
         android:textStyle="bold"
         android:textColor="#000"
         android:layout_above="@id/edtmail"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/txt_samaritan"
         android:layout_centerInParent="true"></TextView>
 

@@ -71,6 +71,9 @@ FirebaseDatabase database;
             public void onClick(View v) {
                 String email=edtemail.getText().toString().trim();
                 String pass=edtpass.getText().toString().trim();
+                String name=edtname.getText().toString().trim();
+                String phno=edtphno.getText().toString().trim();
+                String dob=edtdob.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)){
                     edtemail.setError("Email is Required");

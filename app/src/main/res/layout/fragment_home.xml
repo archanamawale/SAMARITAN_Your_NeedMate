@@ -23,10 +23,12 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/courgette"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="50dp"
                 android:text="Welcome to Samaritan !"
-                android:textSize="36dp"
-                android:textStyle="bold" />
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +79,7 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:textStyle="bold"/>
 
@@ -113,7 +115,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="38dp"
-                       android:layout_marginTop="5dp"
+                       android:layout_marginTop="3dp"
                         android:gravity="center_horizontal"
                         android:text="Whatsapp Alert"
                         android:textAlignment="center"
@@ -152,7 +154,7 @@
                         android:text="Emergency Call"
                         android:textAlignment="center"
                         android:textColor="#000"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
                         android:textSize="15dp"
                         android:gravity="center_horizontal"
                         android:textStyle="bold"/>
@@ -227,7 +229,7 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="3dp"
                         android:gravity="center_horizontal"
                         android:textStyle="bold"/>
 
@@ -265,7 +267,7 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:textStyle="bold"/>
 

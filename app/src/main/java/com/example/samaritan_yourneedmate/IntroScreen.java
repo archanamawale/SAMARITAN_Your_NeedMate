@@ -52,8 +52,8 @@ public class IntroScreen extends AppCompatActivity {
         mList.add(new ScreenItem("Your NeedMate","Designed and Developed to help SAMARITAN Users in need with the exciting features.\n Click on next" +
                 " to check it out!",R.drawable.help_person));
 
-        mList.add(new ScreenItem("Send Alert and update","This app features sms alert through which one can" +
-                "send their location update via SMS or by Whatsapp.",R.drawable.alert));
+        mList.add(new ScreenItem("Send Alert and Update","This app features sms alert through which one can " +
+                " send their location update via SMS or by Whatsapp.",R.drawable.alert));
 
         mList.add(new ScreenItem("Get Access to Location","Get your Current location along with near by " +
                 "Police Stations and Hospitals. \n\n WELCOME SAMARITAN USER!!! ", R.drawable.location));

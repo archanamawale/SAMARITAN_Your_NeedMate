@@ -2,8 +2,10 @@ package com.example.samaritan_yourneedmate;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,6 +29,8 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -47,21 +51,58 @@ public class LoginActivity extends AppCompatActivity {
     Button btnlogin;
     Button btnsignup_new;
     Intent intent;
+    TextView txtfgtpass;
     ProgressBar pblogin;
     LoginButton btnfb; //facebook login button
     private CallbackManager mCallbackManager;
-    private FirebaseAuth mAuth,fAuth;
+     FirebaseAuth mAuth,fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        txtfgtpass=findViewById(R.id.txt_fgtpass);
         edtmail=findViewById(R.id.edtmail);
         edtpass=findViewById(R.id.edtpass);
         btnlogin=findViewById(R.id.btnlogin);
         pblogin=findViewById(R.id.pb_login);
         fAuth=FirebaseAuth.getInstance();
+
+        txtfgtpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText resetemail= new EditText(v.getContext());
+                AlertDialog.Builder passwordrestdialog=new AlertDialog.Builder(v.getContext());
+                passwordrestdialog.setTitle("Forgot Password?");
+                passwordrestdialog.setMessage("Enter the Email to recieve link to reset password:");
+                passwordrestdialog.setView(resetemail);
+
+                passwordrestdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                           String mail=resetemail.getText().toString();
+                           fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                               @Override
+                               public void onSuccess(Void aVoid) {
+                                   Toast.makeText(LoginActivity.this, "Reset Link sent to your Email", Toast.LENGTH_SHORT).show();
+                               }
+                           }).addOnFailureListener(new OnFailureListener() {
+                               @Override
+                               public void onFailure(@NonNull Exception e) {
+                                   Toast.makeText(LoginActivity.this, "Link not sent"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                               }
+                           });
+                    }
+                });
+                passwordrestdialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }); passwordrestdialog.create().show();
+            }
+        });
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,36 +133,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
-
-                            DatabaseReference reference= FirebaseDatabase.getInstance().getReference("User");
-                            reference.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                    // authenticate the user
-                                    if(snapshot.exists()){
-                                        String passwordFromDb=snapshot.child(email).child("password").getValue(String.class);
-                                            String nameFromDb=snapshot.child(email).child("name").getValue(String.class);
-                                            String emailFromDb=snapshot.child(email).child("email").getValue(String.class);
-                                            String phnoFromDb=snapshot.child(email).child("phno").getValue(String.class);
-                                            String dobFromDb=snapshot.child(email).child("dob").getValue(String.class);
-
-
-                                            intent.putExtra("name",nameFromDb);
-                                            intent.putExtra("email",emailFromDb);
-                                            intent.putExtra("phno",phnoFromDb);
-                                            intent.putExtra("dob",dobFromDb);
-                                    }
-                                  else{
-                                        Toast.makeText(LoginActivity.this, "Snapshot does not exists...", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
                         }else{
                             Toast.makeText(LoginActivity.this, "Error:"+task.getException(), Toast.LENGTH_SHORT).show();
                             pblogin.setVisibility(View.GONE);
@@ -159,6 +170,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onCancel() {
                             Log.d("cancel", "facebook:onCancel");
+                            mAuth.signOut();
                             // ...
                         }
 

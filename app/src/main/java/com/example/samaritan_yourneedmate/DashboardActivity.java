@@ -11,12 +11,20 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DashboardActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     FrameLayout frameLayout;
+    static UserInformation user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +55,29 @@ public class DashboardActivity extends AppCompatActivity {
 
             }
         });
+
+        final FirebaseDatabase database= FirebaseDatabase.getInstance();
+        DatabaseReference ref=database.getReference("User/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user=snapshot.getValue(UserInformation.class);
+                System.out.println(user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(DashboardActivity.this, "read failed"+ error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
-        builder.setMessage("Do you really want to exit from the app?").setCancelable(true).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setMessage("Do you really want to exit from the app?").setCancelable(false).
+                setIcon(R.drawable.logonew).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 DashboardActivity.super.onBackPressed();

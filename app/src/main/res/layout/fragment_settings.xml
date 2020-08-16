@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsFragment"
-    android:background="@drawable/bckgrd">
+    android:addStatesFromChildren="true"
+    android:background="@drawable/bckgrd"
+    tools:context=".SettingsFragment">
 
 
     <TextView
@@ -14,25 +15,27 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/courgette"
         android:text="Your Profile"
+        android:textColor="#ffffff"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintVertical_bias="0.063" />
 
     <ImageView
         android:id="@+id/imageView_profilepic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/profile_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.153"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.205" />
 
     <TextView
         android:id="@+id/textView_email"
@@ -40,10 +43,11 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:drawableLeft="@drawable/ic_email_new"
-        android:drawablePadding="30dp"
+        android:drawablePadding="10dp"
         android:fontFamily="@font/aclonica"
+        android:paddingVertical="10dp"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,17 +61,18 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:drawableLeft="@drawable/ic_baseline_person_24"
-        android:drawablePadding="30dp"
+        android:drawablePadding="10dp"
         android:fontFamily="@font/aclonica"
+        android:paddingVertical="7dp"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.424"
+        app:layout_constraintVertical_bias="0.42"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -76,10 +81,11 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:drawableLeft="@drawable/ic_baseline_phone_iphone_24"
-        android:drawablePadding="30dp"
+        android:drawablePadding="0dp"
         android:fontFamily="@font/aclonica"
+        android:paddingVertical="7dp"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -87,51 +93,48 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_email" />
 
     <Button
-        android:id="@+id/btnprofilepic"
-        android:layout_width="151dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/btnresetpass"
+        android:layout_width="153dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button"
-        android:text="Profile Picture "
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toStartOf="@+id/btnresetpass"
-        app:layout_constraintHorizontal_bias="0.965"
+        android:text="Reset Password"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_dob"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/btnresetpass"
-        android:layout_width="141dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/rounded_button"
-        android:text="Reset Password"
-        app:layout_constraintBottom_toTopOf="@+id/btn_logout"
+    <ImageView
+        android:id="@+id/imgview_contactus"
+        android:layout_width="90dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:src="@drawable/contactus"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_profilepic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.791"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_dob" />
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toEndOf="@+id/imageView_profilepic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></ImageView>
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="153dp"
+        android:layout_height="58dp"
         android:background="@drawable/rounded_button"
         android:text="Logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_dob"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toEndOf="@+id/btnresetpass"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.873" />
 
     <TextView
         android:id="@+id/textView_dob"
@@ -139,13 +142,15 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:drawableLeft="@drawable/ic_baseline_date_range_24"
-        android:drawablePadding="30dp"
+        android:drawablePadding="10dp"
         android:fontFamily="@font/aclonica"
+        android:paddingVertical="7dp"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_phno" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
