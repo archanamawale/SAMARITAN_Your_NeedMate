@@ -24,7 +24,8 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/courgette"
                 android:layout_marginTop="50dp"
-                android:text="Welcome to Samaritan !"
+                android:textColor="#ffffff"
+                android:text="Welcome to Samaritan"
                 android:textAlignment="center"
                 android:textSize="30dp"
                 android:textStyle="bold"
@@ -35,6 +36,7 @@
                 android:text="What Next for You ?"
                 android:layout_below="@+id/txtwlcm"
                 android:textSize="24dp"
+                android:textColor="#ffffff"
                 android:fontFamily="@font/courgette"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"></TextView>
@@ -72,16 +74,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/ic_baseline_sms_24"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/yatra_one"
+                        android:gravity="center_horizontal"
                         android:text="Send SMS Alert"
                         android:textAlignment="center"
                         android:textColor="#000"
-                        android:textSize="15dp"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -114,13 +118,14 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                       android:layout_marginTop="3dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/yatra_one"
                         android:gravity="center_horizontal"
                         android:text="Whatsapp Alert"
                         android:textAlignment="center"
                         android:textColor="#000"
-                        android:textSize="15dp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -148,16 +153,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/ic_baseline_call_24"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/yatra_one"
+                        android:gravity="center_horizontal"
                         android:text="Emergency Call"
                         android:textAlignment="center"
                         android:textColor="#000"
-                        android:layout_marginTop="8dp"
-                        android:textSize="15dp"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -186,16 +193,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/ic_baseline_location_on_24"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Locate Me"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/yatra_one"
+                        android:gravity="center_horizontal"
+                        android:text="Locate\n Me"
                         android:textAlignment="center"
                         android:textColor="#000"
-                        android:textSize="15dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -222,16 +231,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/ic_baseline_security_24"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/yatra_one"
+                        android:gravity="center_horizontal"
                         android:text="Police Station Near Me"
                         android:textAlignment="center"
                         android:textColor="#000"
-                        android:textSize="15dp"
-                        android:layout_marginTop="3dp"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -260,16 +271,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/ic_baseline_local_hospital_24"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/yatra_one"
+                        android:gravity="center_horizontal"
                         android:text="Hospitals Near Me"
                         android:textAlignment="center"
                         android:textColor="#000"
-                        android:textSize="15dp"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

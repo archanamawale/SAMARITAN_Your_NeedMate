@@ -19,14 +19,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.facebook.FacebookActivity;
-import com.facebook.login.LoginManager;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -169,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         {
             final EditText getno= new EditText(MainActivity.this);
             final AlertDialog.Builder smsdialog=new AlertDialog.Builder(MainActivity.this);
-            smsdialog.setTitle("Send Alert SMS?");
+            smsdialog.setTitle("Send Alert SMS?").setIcon(R.drawable.send_sms);
             smsdialog.setMessage("Enter the Mobile number to send sms alert:");
             smsdialog.setCancelable(false);
             smsdialog.setView(getno);
@@ -180,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                     in.setData(Uri.parse("smsto:"));
                     in.setType("vnd.android-dir/mms-sms");
                     in.putExtra("address","+91"+getno.getText().toString());
-                    in.putExtra("sms_body","🛑    🛑   🛑   🛑   🛑   🛑\nHey, I am in trouble. I need ur help. You could locate me from the latitude " +
+                    in.putExtra("sms_body","🛑    🛑    🛑   🛑   🛑   🛑\nHey, I am in trouble. I need ur help. You could locate me from the latitude " +
                             "and longitude below\n"+txtgetlocationtosend+"\n"+"My Current location is:\n"+getaddress);
                     startActivity(Intent.createChooser(in,"SEND SMS VIA:"));
 
@@ -193,6 +191,11 @@ public class MainActivity extends AppCompatActivity {
         });smsdialog.create().show();
 
         }
+    }
+
+    public void hidekeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }

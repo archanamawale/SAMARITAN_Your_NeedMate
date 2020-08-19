@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -162,7 +163,7 @@ public class MainActivity2 extends AppCompatActivity {
         {
             final EditText getno= new EditText(MainActivity2.this);
             final AlertDialog.Builder smsdialog=new AlertDialog.Builder(MainActivity2.this);
-            smsdialog.setTitle("Send Whatsapp Alert?");
+            smsdialog.setTitle("Send Whatsapp Alert?").setIcon(R.mipmap.whatsapp);
             smsdialog.setMessage("Enter the Mobile number to send Whatsapp alert:");
             smsdialog.setCancelable(false);
             smsdialog.setView(getno);
@@ -173,7 +174,7 @@ public class MainActivity2 extends AppCompatActivity {
                     if (installed){
                         Intent intent=new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+"+91" +getno.getText().toString().trim() +
-                                "&text="+"🛑   🛑   🛑   🛑   🛑   🛑\nHey, I am in trouble. I need ur help. You could locate me from the latitude " +
+                                "&text="+"🛑    🛑    🛑    🛑    🛑    🛑\nHey, I am in trouble. I need ur help. You could locate me from the latitude " +
                                 "and longitude below\n"+txtgetlocationtosend+"\n"+"My Current location is:\n"+getaddress));
                         startActivity(intent);
                     }else{
@@ -204,4 +205,9 @@ public class MainActivity2 extends AppCompatActivity {
         return (check==PackageManager.PERMISSION_GRANTED);
     }
 
+
+    public void hidekeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 }

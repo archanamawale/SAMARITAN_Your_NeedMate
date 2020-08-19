@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
         <item>@font/aclonica</item>
         <item>@font/acme</item>
         <item>@font/aladin</item>
         <item>@font/architects_daughter</item>
+        <item>@font/berkshire_swash</item>
+        <item>@font/bungee_shade</item>
+        <item>@font/carter_one</item>
+        <item>@font/cherry_cream_soda</item>
         <item>@font/courgette</item>
+        <item>@font/federant</item>
+        <item>@font/fontdiner_swanky</item>
+        <item>@font/germania_one</item>
+        <item>@font/joti_one</item>
+        <item>@font/kavoon</item>
+        <item>@font/knewave</item>
+        <item>@font/lemon</item>
+        <item>@font/macondo_swash_caps</item>
+        <item>@font/marko_one</item>
+        <item>@font/vast_shadow</item>
+        <item>@font/yatra_one</item>
     </array>
 </resources>

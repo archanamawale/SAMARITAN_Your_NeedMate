@@ -1,0 +1,38 @@
+<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name:"
+        android:layout_marginTop="30dp"
+        android:id="@+id/txtfirstname"
+        android:textSize="20dp"
+        android:textColor="#ffffff"></TextView>
+
+<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Name:"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtfirstname"
+        android:textSize="20dp"
+        android:id="@+id/txtlastname"
+        android:textColor="#ffffff"></TextView>
+
+ <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number:"
+        android:layout_below="@id/txtlastname"
+        android:id="@+id/txtphno"
+        android:layout_marginTop="22dp"
+        android:textSize="20dp"
+        android:textColor="#ffffff"></TextView>
+
+ <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Birth:"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/txtphno"
+            android:id="@+id/txtdob"></TextView>

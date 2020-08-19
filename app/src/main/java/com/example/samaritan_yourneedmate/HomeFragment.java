@@ -23,7 +23,6 @@ import android.widget.GridLayout;
 import android.widget.Toast;
 
 import java.security.PrivateKey;
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -130,7 +129,7 @@ String name;
         {
             final EditText getno= new EditText(getContext());
             final AlertDialog.Builder calldialog=new AlertDialog.Builder(getContext());
-            calldialog.setTitle("Send Alert SMS?");
+            calldialog.setTitle("Make a Call?").setIcon(R.drawable.ic_baseline_call_24);
             calldialog.setMessage("Enter the Mobile number to make a call to:");
             calldialog.setCancelable(true);
             calldialog.setView(getno);

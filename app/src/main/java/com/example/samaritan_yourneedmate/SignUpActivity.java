@@ -1,11 +1,13 @@
 package com.example.samaritan_yourneedmate;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -14,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,9 +36,9 @@ TextView edtdob;
 Button signup,slogin;
 DatePickerDialog datePickerDialog;
 FirebaseAuth fAuth;
-ProgressBar progressBar;
 DatabaseReference databaseReference;
 FirebaseDatabase database;
+LottieAnimationView lottieAnimationView;
     private String TAG="Email Verification";
 
     @Override
@@ -48,7 +52,7 @@ FirebaseDatabase database;
         edtemail=findViewById(R.id.edt_semail);
 
         fAuth=FirebaseAuth.getInstance();
-        progressBar=findViewById(R.id.progress_bar);
+        lottieAnimationView=findViewById(R.id.loading_anim1);
 
         // Write a message to the database
         database = FirebaseDatabase.getInstance();
@@ -87,7 +91,8 @@ FirebaseDatabase database;
                     edtpass.setError("Password must be more than 6 characters long");
                     return;
                 }
-                progressBar.setVisibility(View.VISIBLE);
+                lottieAnimationView.setVisibility(View.VISIBLE);
+                lottieAnimationView.playAnimation();
                 if (fAuth.getCurrentUser()!=null){
                     Intent in= new Intent(SignUpActivity.this, MainActivity.class);
                     startActivity(in);
@@ -98,6 +103,7 @@ FirebaseDatabase database;
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            lottieAnimationView.cancelAnimation();
                             storeUserInformation();
                             Toast.makeText(SignUpActivity.this,"SignedUp Successfully \n Please Login to Continue",Toast.LENGTH_SHORT).show();
                             Intent in= new Intent(SignUpActivity.this, LoginActivity.class);
@@ -105,7 +111,8 @@ FirebaseDatabase database;
 
                         }else{
                             Toast.makeText(SignUpActivity.this, "Error Occured"+task.getException(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+                            lottieAnimationView.cancelAnimation();
+                            lottieAnimationView.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -145,11 +152,32 @@ FirebaseDatabase database;
         userInformation.setName(name);
         userInformation.setEmail(email);
         userInformation.setPassword(password);
-        //FirebaseUser user=fAuth.getCurrentUser();
-        //databaseReference.child(user.getUid()).setValue(userInformation);
         FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().
                 getUid()).setValue(userInformation);
         Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
     }
 
+    public void hidekeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+        builder.setMessage("Do you really want to exit from the app?").setCancelable(false).setTitle("Exit the App?").
+                setIcon(R.mipmap.app_logo).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertdialog=builder.create();
+        alertdialog.show();
+    }
 }

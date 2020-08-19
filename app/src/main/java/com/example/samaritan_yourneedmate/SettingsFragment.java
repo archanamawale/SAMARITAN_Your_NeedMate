@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.login.LoginManager;
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +40,8 @@ import static com.example.samaritan_yourneedmate.DashboardActivity.user;
 public class SettingsFragment extends Fragment {
 Button btnlogout, btnresetpass;
 private TextView txtview1, txtview2,txtview3,txtview4;
+LottieAnimationView loadinganim;
+View v;
 
 ImageView imgview;
     private FirebaseAuth fAuth;
@@ -47,47 +50,30 @@ ImageView imgview;
         // Required empty public constructor
     }
 
-    @Override
-    public void onStart() {
 
-        AlertDialog.Builder alertload=new AlertDialog.Builder(getView().getContext());
-        alertload.setTitle("Loading...").setMessage("Please wait till your profile data is been fetched");
-        alertload.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        }); alertload.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });super.onStart();
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_settings, container, false);
-
-         imgview=v.findViewById(R.id.imgview_contactus);
-         imgview.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                     sendmail();
-             }
-         });
-        btnlogout=v.findViewById(R.id.btn_logout);
-        btnresetpass=v.findViewById(R.id.btnresetpass);
+        v= inflater.inflate(R.layout.fragment_settings, container, false);
+            init();
+            setdata();
         fAuth=FirebaseAuth.getInstance();
+
+        imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendmail();
+            }
+        });
+        
         btnresetpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final EditText resetemail= new EditText(v.getContext());
                 AlertDialog.Builder passwordrestdialog=new AlertDialog.Builder(v.getContext());
-                passwordrestdialog.setTitle("Reset your Password?");
+                passwordrestdialog.setTitle("Reset your Password?").setIcon(R.drawable.resetpass);
                 passwordrestdialog.setMessage("Enter the Email to recieve link to reset password:");
                 passwordrestdialog.setCancelable(true);
                 passwordrestdialog.setView(resetemail);
@@ -101,7 +87,6 @@ ImageView imgview;
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(getActivity(), "Reset Link sent to your Email", Toast.LENGTH_LONG).show();
                                 FirebaseAuth.getInstance().signOut();
-                                LoginManager.getInstance().logOut();
                                 startActivity(new Intent(getActivity(),LoginActivity.class));
                                 getActivity().finish();
                                 Toast.makeText(getActivity(), "Logged Out Successfully. Please ReLogin to continue!!!", Toast.LENGTH_LONG).show();
@@ -128,28 +113,46 @@ ImageView imgview;
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
                 startActivity(new Intent(getActivity(),LoginActivity.class));
                 getActivity().finish();
                 Toast.makeText(getActivity(), "Logged Out Successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
-           // Intent intent=getActivity().getIntent();
-           // email=intent.getStringExtra("email");
+        return v;
+    }
 
+    private void setdata() {
+        loadinganim.setVisibility(View.VISIBLE);
+        loadinganim.playAnimation();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadinganim.cancelAnimation();
+                loadinganim.setVisibility(View.GONE);
+                try {
+                    txtview1.setText(user.getName());
+                    txtview2.setText(user.getEmail());
+                    txtview3.setText(user.getPhno());
+                    txtview4.setText(user.getDob());
+                }catch (Exception e){
+                    Toast.makeText(getActivity(), "Loading Error please try again", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, 2200);
+    }
+
+    private void init() {
+        loadinganim=v.findViewById(R.id.loading_anim);
+        imgview=v.findViewById(R.id.imgview_contactus);
+
+        btnlogout=v.findViewById(R.id.btn_logout);
+        btnresetpass=v.findViewById(R.id.btnresetpass);
         txtview1=v.findViewById(R.id.textView_name);
         txtview2=v.findViewById(R.id.textView_email);
         txtview3=v.findViewById(R.id.textView_phno);
         txtview4=v.findViewById(R.id.textView_dob);
         imgview=v.findViewById(R.id.imageView_profilepic);
-
-        txtview1.setText(user.getName());
-        txtview2.setText(user.getEmail());
-        txtview3.setText(user.getPhno());
-        txtview4.setText(user.getDob());
-
-        return v;
     }
 
     private void sendmail() {
@@ -164,8 +167,9 @@ ImageView imgview;
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String getmsg= contactus.getText().toString().trim();
-                Intent intent=new Intent(Intent.ACTION_VIEW);
-                intent.putExtra(Intent.EXTRA_EMAIL,"archi9598@gmail.com");
+                String mailto="samaritanyourneedmate5@gmail.com";
+                Intent intent=new Intent(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_EMAIL,new String[]{mailto});
                 intent.putExtra(Intent.EXTRA_SUBJECT,"Samaritan User!!!");
                 intent.putExtra(Intent.EXTRA_TEXT,getmsg);
                 intent.setType("message/rfc822");

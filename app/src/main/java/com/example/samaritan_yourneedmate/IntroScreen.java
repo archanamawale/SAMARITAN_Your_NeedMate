@@ -44,7 +44,6 @@ public class IntroScreen extends AppCompatActivity {
             finish();
         }
 
-        getSupportActionBar().hide();
 
         tabIndicator=findViewById(R.id.tab_indicator);
 

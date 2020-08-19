@@ -11,23 +11,16 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -49,32 +42,36 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edtmail,edtpass;
     Button btnlogin;
-    Button btnsignup_new;
+    Button btnsignup;
     Intent intent;
     TextView txtfgtpass;
-    ProgressBar pblogin;
-    LoginButton btnfb; //facebook login button
-    private CallbackManager mCallbackManager;
-     FirebaseAuth mAuth,fAuth;
+    ImageView imgbtn;
+     FirebaseAuth fAuth;
+     LottieAnimationView loadinganim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        txtfgtpass=findViewById(R.id.txt_fgtpass);
-        edtmail=findViewById(R.id.edtmail);
-        edtpass=findViewById(R.id.edtpass);
-        btnlogin=findViewById(R.id.btnlogin);
-        pblogin=findViewById(R.id.pb_login);
         fAuth=FirebaseAuth.getInstance();
+           init();
 
+        btnsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_n=new Intent(LoginActivity.this,SignUpActivity.class);
+                startActivity(intent_n);
+                finish();
+            }
+        });
+
+        //forgot password
         txtfgtpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final EditText resetemail= new EditText(v.getContext());
                 AlertDialog.Builder passwordrestdialog=new AlertDialog.Builder(v.getContext());
-                passwordrestdialog.setTitle("Forgot Password?");
+                passwordrestdialog.setTitle("Forgot Password?").setIcon(R.drawable.resetpass);
                 passwordrestdialog.setMessage("Enter the Email to recieve link to reset password:");
                 passwordrestdialog.setView(resetemail);
 
@@ -103,6 +100,8 @@ public class LoginActivity extends AppCompatActivity {
                 }); passwordrestdialog.create().show();
             }
         });
+
+        //login
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,22 +119,28 @@ public class LoginActivity extends AppCompatActivity {
                     edtpass.setError("Password must be more than 6 characters long");
                     return;
                 }
-                pblogin.setVisibility(View.VISIBLE);
+                loadinganim.setVisibility(View.VISIBLE);
+                loadinganim.playAnimation();
                 if (fAuth.getCurrentUser()!=null){
                     intent= new Intent(LoginActivity.this, DashboardActivity.class);
                     startActivity(intent);
                     finish();
                 }
-                pblogin.setVisibility(View.VISIBLE);
+                loadinganim.setVisibility(View.VISIBLE);
+                loadinganim.playAnimation();
                 fAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()){
+                            loadinganim.cancelAnimation();
                             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
+                            finish();
                         }else{
+                            loadinganim.cancelAnimation();
+                            loadinganim.setVisibility(View.INVISIBLE);
                             Toast.makeText(LoginActivity.this, "Error:"+task.getException(), Toast.LENGTH_SHORT).show();
-                            pblogin.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -143,89 +148,41 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        btnsignup_new=findViewById(R.id.btn_sign_up);
-        btnsignup_new.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void init() {
+        txtfgtpass=findViewById(R.id.txt_fgtpass);
+        edtmail=findViewById(R.id.edtmail);
+        edtpass=findViewById(R.id.edtpass);
+        btnlogin=findViewById(R.id.btnlogin);
+        btnsignup=findViewById(R.id.btnsignup);
+        loadinganim=findViewById(R.id.loading_anim);
+    }
+
+
+    public void hidekeyboard(View view) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setMessage("Do you really want to exit from the app?").setCancelable(false).setTitle("Exit the App?").
+                setIcon(R.mipmap.app_logo).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                intent = new Intent(LoginActivity.this,SignUpActivity.class);
-                startActivity(intent);
+            public void onClick(DialogInterface dialog, int which) {
+                LoginActivity.super.onBackPressed();
+                finish();
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
             }
         });
+        AlertDialog alertdialog=builder.create();
+        alertdialog.show();
 
-        //facebook login :
-        mAuth = FirebaseAuth.getInstance();
-        mCallbackManager = CallbackManager.Factory.create();
-         btnfb=findViewById(R.id.btn_fb);
-         btnfb.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                    LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this,Arrays.asList("email", "public_profile"));
-                    LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-                        @Override
-                        public void onSuccess(LoginResult loginResult) {
-                            Log.d("Success", "facebook:onSuccess:" + loginResult);
-                            handleFacebookAccessToken(loginResult.getAccessToken());
-                        }
-
-                        @Override
-                        public void onCancel() {
-                            Log.d("cancel", "facebook:onCancel");
-                            mAuth.signOut();
-                            // ...
-                        }
-
-                        @Override
-                        public void onError(FacebookException error) {
-                            Log.d("error", "facebook:onError", error);
-                            // ...
-                        }
-                    });
-             }
-         });
-
-
-
-
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Pass the activity result back to the Facebook SDK
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
-
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("abc", "handleFacebookAccessToken:" + token);
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("abc", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("abc", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentuser= mAuth.getCurrentUser();
     }
 }

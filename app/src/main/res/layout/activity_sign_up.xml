@@ -4,87 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="hidekeyboard"
     tools:context=".SignUpActivity"
     android:background="@drawable/bg">
-
-    <TextView
-        android:id="@+id/txtsignup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/courgette"
-        android:gravity="center_horizontal"
-        android:text="SignUp"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:textSize="36dp"></TextView>
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_baseline_person_24"
+    <com.airbnb.lottie.LottieAnimationView
+        android:visibility="invisible"
+        android:elevation="10dp"
+        android:id="@+id/loading_anim1"
+        app:lottie_autoPlay="true"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/txtsignup"
-        app:civ_border_width="5dp"
-        android:layout_marginTop="20dp"
-        app:civ_border_color="@color/colorAccent"
-        android:id="@+id/circleviewperson">
-    </de.hdodenhof.circleimageview.CircleImageView>
+        android:layout_width="150dp"
+        app:lottie_loop="true"
+        app:lottie_fileName="load_anim.json"
+        android:layout_height="150dp"/>
+
+    <ImageView
+        android:id="@+id/iv_signupnow"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/signup1"
+        android:layout_centerHorizontal="true"/>
+
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Full Name"
+        android:drawableLeft="@drawable/ic_s_person"
+        android:drawablePadding="10dp"
         android:id="@+id/edt_fullname"
+        android:layout_below="@id/iv_signupnow"
         android:background="@drawable/rounded_bg"
-        android:layout_below="@+id/circleviewperson"
-        android:layout_marginTop="20dp"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:padding="10dp"
         android:inputType="textPersonName"></EditText>
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Phone Number"
+        android:drawableLeft="@drawable/ic_s_phone"
+        android:drawablePadding="10dp"
         android:id="@+id/edt_phno"
+        android:maxLength="10"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_bg"
         android:layout_below="@+id/edt_fullname"
         android:layout_marginTop="10dp"
-        android:layout_centerInParent="true"
         android:padding="10dp"
         android:inputType="number"></EditText>
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Date of Birth"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_s_dob"
+        android:layout_centerHorizontal="true"
         android:id="@+id/edt_dob"
         android:textSize="18dp"
         android:background="@drawable/rounded_bg"
         android:layout_below="@+id/edt_phno"
         android:layout_marginTop="10dp"
-        android:layout_centerInParent="true"
         android:padding="10dp"></TextView>
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Email"
+        android:layout_centerHorizontal="true"
         android:id="@+id/edt_semail"
+        android:drawableLeft="@drawable/ic__s_email"
+        android:drawablePadding="10dp"
+        android:layout_centerInParent="true"
         android:background="@drawable/rounded_bg"
         android:layout_below="@+id/edt_dob"
         android:layout_marginTop="10dp"
-        android:layout_centerInParent="true"
         android:padding="10dp"
         android:inputType="textWebEmailAddress"></EditText>
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:layout_centerHorizontal="true"
         android:id="@+id/edt_spass"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_s_password"
         android:background="@drawable/rounded_bg"
-        android:ems="10"
+        android:maxLength="12"
         android:layout_below="@+id/edt_semail"
         android:layout_marginTop="10dp"
-        android:layout_centerInParent="true"
         android:padding="10dp"
         android:inputType="textPersonName"></EditText>
     <Button
@@ -92,21 +101,23 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_signup"
         android:text="SignUp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_button"
         android:layout_below="@+id/edt_spass"
         android:layout_marginTop="20dp"
-        android:layout_centerInParent="true"
         android:textSize="20dp"></Button>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:id="@+id/relLayout1"
         android:layout_below="@id/btn_signup">
         <View
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="2dp"
             android:background="#000"
             android:layout_marginLeft="30dp"
@@ -116,13 +127,13 @@
             android:layout_height="wrap_content"
             android:text="OR"
             android:textColor="#000"
-            android:layout_marginTop="-13dp"
+            android:layout_marginTop="-7dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:id="@+id/txtor"></TextView>
         <View
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="2dp"
             android:background="#000"
             android:layout_alignParentRight="true"
@@ -136,7 +147,7 @@
         android:text="LOGIN"
         android:layout_centerHorizontal="true"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:textSize="20dp"
+        android:textSize="24dp"
         android:layout_below="@+id/txtalreadyhaveacc"
         android:layout_marginRight="50dp"
         android:layout_marginTop="10dp"
@@ -148,18 +159,9 @@
         android:layout_height="wrap_content"
         android:text="Already have an Account...."
         android:textSize="20dp"
+        android:textStyle="italic"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/relLayout1"
         android:layout_marginTop="30dp"
         android:textColor="#000"></TextView>
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progress_bar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:visibility="invisible"></ProgressBar>
 </RelativeLayout>

@@ -5,14 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".AboutFragment"
     android:orientation="vertical"
-    android:background="@drawable/bg1">
+    android:background="@drawable/bckgrd">
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:text="Version: 1.0"/>
 
    <ImageView
        android:id="@+id/imglogo"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
-       android:layout_marginTop="30dp"
+       android:layout_width="60dp"
+       android:layout_height="60dp"
+       android:layout_marginBottom="12dp"
+       android:layout_centerInParent="true"
       android:src="@drawable/logonew"
+       android:layout_alignParentBottom="true"
       android:layout_centerHorizontal="true"></ImageView>
    <TextView
        android:layout_width="match_parent"
@@ -22,15 +30,16 @@
       android:textSize="20dp"
        android:textColor="#000"
        android:fontFamily="@font/aclonica"
-       android:layout_below="@id/imglogo"
+       android:layout_below="@id/txtmyname"
+       android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"/>
    <TextView
        android:id="@+id/txtabt2"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_below="@id/txtabt1"
-       android:textSize="16dp"
        android:layout_marginRight="10dp"
+       android:fontFamily="@font/yatra_one"
        android:layout_marginTop="10dp"
        android:textColor="#000"
        android:layout_marginLeft="20dp"
@@ -40,39 +49,53 @@ update of their current location to their near ones. One can opt for making an
 emergency call too. You can get your current location too, in addition could locate near by
 Police Station and Hospitals. \nThe moto of this app is just to provide an helping hand to the users.
 Any misuse of this app to prank someone could not be tolerated and would lead to a legal action.
-If such situation comes into the picture, the developer won't take it's charge.
-\nSTAY SAFE AND STAY ALERT!!!" />
+If such situation comes into the picture, the developer won't take it's charge." />
+
+   <TextView
+       android:id="@+id/txt_stay"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:layout_below="@id/txtabt2"
+      android:text="STAY SAFE &amp; STAY ALERT!!!"
+      android:textStyle="bold"
+      android:layout_centerHorizontal="true"
+      android:textColor="@color/colorAccent"></TextView>
    <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
       android:id="@+id/txtabt3"
-      android:text="ABOUT DEVELOPER:"
+      android:text="Designed &amp; Developed By:"
       android:textSize="20dp"
       android:textColor="#000"
        android:fontFamily="@font/aclonica"
-      android:layout_below="@id/txtabt2"
+     android:layout_centerHorizontal="true"
       android:layout_marginLeft="20dp"
-      android:layout_marginTop="10dp"></TextView>
+      android:layout_marginTop="40dp"></TextView>
    <ImageView
+       android:id="@+id/imgview_mypic"
        android:layout_width="100dp"
        android:layout_height="100dp"
       android:src="@drawable/mypic"
-      android:layout_below="@id/txtabt2"
-       android:layout_marginTop="30dp"
-      android:layout_alignParentRight="true"
+       android:layout_below="@id/txtabt3"
+       android:layout_marginTop="20dp"
+      android:layout_centerHorizontal="true"
       android:layout_marginRight="10dp"></ImageView>
-
    <TextView
-       android:layout_width="250dp"
+       android:id="@+id/txtmyname"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-      android:id="@+id/txtabt4"
-      android:layout_below="@id/txtabt3"
-      android:layout_marginLeft="20dp"
-       android:textColor="#000"
-      android:text="This app is designed and developed Miss. ARCHANA MAWALE, student of
-Shri Sant Gajanan Maharaj College of Engineering Shegaon (MS), as a demo project
-to be submitted as a part of training in Android Application Development
-by IBM in the month of July 2020-  August 2020."/>
+      android:layout_below="@id/imgview_mypic"
+      android:layout_marginTop="10dp"
+      android:text="Archana Mawale\n (INDIA)"
+       android:textStyle="bold"
+       android:textAlignment="center"
+       android:gravity="center_horizontal"
+      android:fontFamily="@font/courgette"
+      android:textColor="@color/colorAccent"
+      android:layout_centerHorizontal="true"
+      android:textSize="20dp"></TextView>
+
+
 
 
 

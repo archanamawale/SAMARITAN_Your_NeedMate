@@ -4,23 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="hidekeyboard"
     tools:context=".LoginActivity"
     android:background="@drawable/bg">
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/help_person"
+    <com.airbnb.lottie.LottieAnimationView
+        android:visibility="invisible"
+        android:elevation="10dp"
+        android:id="@+id/loading_anim"
+        app:lottie_autoPlay="true"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"></ImageView>
-<ProgressBar
-    android:id="@+id/pb_login"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_toRightOf="@+id/btnlogin"
-    android:layout_below="@+id/txt_fgtpass"
-    android:layout_marginTop="8dp"
-    android:layout_marginLeft="20dp"
-    android:visibility="invisible"></ProgressBar>
+        android:layout_width="150dp"
+        app:lottie_loop="true"
+        app:lottie_fileName="load_anim.json"
+        android:layout_height="150dp"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +29,7 @@
         android:textStyle="bold"
         android:textColor="#000"
         android:layout_above="@id/edtmail"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         android:id="@+id/txt_samaritan"
         android:layout_centerInParent="true"></TextView>
 
@@ -40,14 +38,14 @@
         android:layout_height="50dp"
         android:id="@+id/edtmail"
         android:background="@drawable/rounded_bg"
-        android:layout_above="@id/edtpass"
-        android:layout_centerInParent="true"
         android:hint="Email:"
+        android:layout_above="@id/edtpass"
+        android:layout_centerHorizontal="true"
         android:textSize="20dp"
         android:inputType="textWebEmailAddress"
-        android:paddingHorizontal="30dp"
+        android:paddingHorizontal="10dp"
         android:drawableLeft="@drawable/email_drawable"
-        android:drawablePadding="20dp"></EditText>
+        android:drawablePadding="10dp"></EditText>
 
     <EditText
         android:layout_width="300dp"
@@ -59,22 +57,23 @@
         android:id="@+id/edtpass"
         android:ems="10"
         android:textSize="20dp"
-        android:paddingHorizontal="30dp"
+        android:paddingHorizontal="10dp"
         android:drawableLeft="@drawable/password_drawable"
-        android:drawablePadding="20dp"
+        android:drawablePadding="10dp"
         android:layout_marginTop="10dp">
 
     </EditText>
     <Button
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button"
         android:text="Login"
+        android:textColor="#ffffff"
         android:textSize="20dp"
         android:textStyle="bold"
         android:id="@+id/btnlogin"
         android:layout_below="@+id/edtpass"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_centerInParent="true"></Button>
 
     <TextView
@@ -85,6 +84,7 @@
         android:textSize="18dp"
         android:id="@+id/txt_fgtpass"
         android:clickable="true"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/edtpass"
         android:textColor="#000"
         android:layout_alignParentRight="true"
@@ -93,12 +93,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:id="@+id/relLayout1"
-        android:layout_below="@id/btnlogin">
+        android:layout_above="@+id/txtnewtosm">
 
         <View
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="2dp"
             android:background="#000"
             android:layout_marginLeft="30dp"
@@ -115,61 +114,41 @@
             android:id="@+id/txtor"></TextView>
 
         <View
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="2dp"
             android:background="#000"
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"
             android:id="@+id/view2"></View>
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/btn_fb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtor"
-            android:layout_centerInParent="true"
-           android:scaleX="1.2"
-            android:textSize="18dp"
-            style="@style/com_facebook_loginview_default_style"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="30dp" />
-
 
     </RelativeLayout>
-
     <TextView
+        android:id="@+id/txtnewtosm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New to Samaritan..."
-        android:textStyle="bold"
         android:textSize="20dp"
-        android:id="@+id/txt_nts"
         android:textColor="#000"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="15dp"></TextView>
-
+        android:textStyle="italic"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/btnsignup"/>
     <Button
+        android:id="@+id/btnsignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="SIGNUP"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:text="SignUp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="5dp"
+        android:textSize="24dp"
         android:textStyle="bold"
-        android:textSize="18dp"
-        android:id="@+id/btn_sign_up"></Button>
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+       android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"/>
 
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:background="#000"
-        android:id="@+id/view"></View>
+        
 
 
 </RelativeLayout>

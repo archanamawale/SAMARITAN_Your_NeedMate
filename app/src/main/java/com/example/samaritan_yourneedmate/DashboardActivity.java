@@ -75,12 +75,12 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
         builder.setMessage("Do you really want to exit from the app?").setCancelable(false).
-                setIcon(R.drawable.logonew).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                setTitle("Exit the App?").
+                setIcon(R.mipmap.app_logo).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                DashboardActivity.super.onBackPressed();
                 finish();
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
