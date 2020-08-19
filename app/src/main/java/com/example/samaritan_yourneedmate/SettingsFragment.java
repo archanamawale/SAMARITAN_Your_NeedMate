@@ -152,14 +152,14 @@ ImageView imgview;
         txtview2=v.findViewById(R.id.textView_email);
         txtview3=v.findViewById(R.id.textView_phno);
         txtview4=v.findViewById(R.id.textView_dob);
-        imgview=v.findViewById(R.id.imageView_profilepic);
+        imgview=v.findViewById(R.id.imgview_contactus);
     }
 
     private void sendmail() {
 
         final EditText contactus= new EditText(getContext());
         final AlertDialog.Builder calldialog=new AlertDialog.Builder(getContext());
-        calldialog.setTitle("CONTACT US");
+        calldialog.setTitle("CONTACT US").setIcon(R.drawable.email_drawable);
         calldialog.setMessage("Enter your Message/ Feedback/ Queries:");
         calldialog.setCancelable(true);
         calldialog.setView(contactus);
